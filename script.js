@@ -38,9 +38,8 @@ document.querySelectorAll('[data-postcode]').forEach(form => {
     const area = (pc.match(/^[A-Z]+/) || [''])[0];
     if (!pc) { msg.textContent = 'Please enter your postcode.'; return; }
     msg.textContent = AREAS.includes(area)
-      ? `Good news — we collect in ${pc}. Next available slot: tomorrow, 7–9am.`
-      : `We don't collect in ${pc} yet. Call 0800 716 625 and we'll help.`;
-    if (AREAS.includes(area) && form.dataset.go) location.href = form.dataset.go + '?postcode=' + encodeURIComponent(pc);
+      ? `Good news — we cover ${pc}. Call free on 0800 716 625 to arrange your collection.`
+      : `We may not cover ${pc} yet. Call 0800 716 625 and we'll help.`;
   });
 });
 
@@ -64,5 +63,6 @@ if (bq) bq.addEventListener('input', () => {
   document.querySelectorAll('.branch').forEach(b => { b.style.display = b.textContent.toLowerCase().includes(q) ? '' : 'none'; });
 });
 
-// Year
+// Year and years in business
+document.querySelectorAll('[data-years]').forEach(el => el.textContent = new Date().getFullYear() - 1990);
 document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
